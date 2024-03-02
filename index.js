@@ -1,0 +1,48 @@
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const port = 8000;
+<<<<<<< HEAD
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require('./swagger_output.json');
+
+const visitantesRoutes = require('./src/routes/visitanteRoutes');
+
+app.use(express.json());
+app.use(cors());
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+app.get('/', (req, res) => {
+    res,send('Bem-vindo a API MUSEU');
+    //#swagger.ignore = true
+})
+
+app.use('/visitantes', visitantesRoutes);
+
+app.all('*', (req, res) => {
+    res.status(404).send('rota nao encontrada');
+})
+
+app.listen(port, () => {
+    console.log('Servidor de pe: http://localhost:8000');
+=======
+
+const visitanteRoutes = require('./src/routes/visitanteRoutes');
+
+app.use(express.json());
+app.use(cors());
+
+app.get('/', (req, res) => {
+    res.send("Bem-vindo à API MUSEU");
+})
+
+app.use('/visitantes', visitanteRoutes);
+
+app.all('*',(req, res) => {
+    res.status(404).send("Rota não encontrada");
+})
+
+app.listen(port, () => {
+    console.log("Servidor de pé: http://localhost:8000")
+>>>>>>> 07481add41dd9482bf857751fdde56de3d58d8e2
+})
